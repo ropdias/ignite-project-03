@@ -17,5 +17,8 @@
 # data
 /data
 
-#db
+# db
 /db/*.db
+
+# vscode settings
+/.vscode
