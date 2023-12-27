@@ -49,7 +49,7 @@ describe('Register Use Case', () => {
     })
 
     // We expect the Promise to throw an Error and be an instance of UserAlreadyExistsError
-    expect(() => {
+    await expect(() => {
       return registerUseCase.execute({
         name: 'John Doe',
         email,
