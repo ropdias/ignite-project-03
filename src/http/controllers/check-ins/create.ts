@@ -9,10 +9,10 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
 
   const createCheckInBodySchema = z.object({
     // The refine method below is a function to use a verification that is not native from zod like min or max
-    latitude: z.coerce.number().refine((value) => {
+    latitude: z.number().refine((value) => {
       return Math.abs(value) <= 90
     }),
-    longitude: z.coerce.number().refine((value) => {
+    longitude: z.number().refine((value) => {
       return Math.abs(value) <= 180
     }),
   })
