@@ -16,9 +16,9 @@ jobs:
           POSTGRESQL_DATABASE: apisolid
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Install NodeJS # Sometimes we don't need this step if the runner already has it installed
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm' # github will create a cache of dependencies
