@@ -20,7 +20,7 @@ jobs:
       - name: Install NodeJS # Sometimes we don't need this step if the runner already has it installed
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
           cache: 'npm' # github will create a cache of dependencies
       - name: Install dependencies
         run: npm ci # installing a clean install of devDependencies
