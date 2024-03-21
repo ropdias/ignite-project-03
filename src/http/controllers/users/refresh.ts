@@ -4,12 +4,17 @@ export async function refresh(request: FastifyRequest, reply: FastifyReply) {
   // This will check in the cookies if we have the refresh token and it's valid:
   await request.jwtVerify({ onlyCookie: true })
 
+  const { role } = request.user
+
   // this will have a default expiresIn of 10minutes (we defined it in app.ts)
   // request.user.sub will be available after jwtVerify()
-  const token = await reply.jwtSign({}, { sign: { sub: request.user.sub } })
+  const token = await reply.jwtSign(
+    { role },
+    { sign: { sub: request.user.sub } },
+  )
 
   const refreshToken = await reply.jwtSign(
-    {},
+    { role },
     { sign: { sub: request.user.sub, expiresIn: '7d' } },
   )
 

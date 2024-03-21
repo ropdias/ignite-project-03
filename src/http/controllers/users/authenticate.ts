@@ -20,10 +20,17 @@ export async function authenticate(
     const { user } = await authenticateUseCase.execute({ email, password })
 
     // this will have a default expiresIn of 10minutes (we defined it in app.ts)
-    const token = await reply.jwtSign({}, { sign: { sub: user.id } })
+    const token = await reply.jwtSign(
+      {
+        role: user.role,
+      },
+      { sign: { sub: user.id } },
+    )
 
     const refreshToken = await reply.jwtSign(
-      {},
+      {
+        role: user.role,
+      },
       { sign: { sub: user.id, expiresIn: '7d' } },
     )
 
