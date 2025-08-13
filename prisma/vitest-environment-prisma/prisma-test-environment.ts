@@ -1,7 +1,7 @@
 import 'dotenv/config'
 import { randomUUID } from 'node:crypto'
 import { execSync } from 'node:child_process'
-import { Environment } from 'vitest'
+import type { Environment } from 'vitest/environments'
 import { PrismaClient } from '@prisma/client'
 
 // postgresql://docker:docker@localhost:5432/apisolid?schema=public
@@ -22,6 +22,7 @@ function generateDatabaseURL(schema: string) {
 
 export default <Environment>{
   name: 'prisma',
+  transformMode: 'ssr',
   async setup() {
     const schema = randomUUID()
     const databaseUrl = generateDatabaseURL(schema)
@@ -39,5 +40,4 @@ export default <Environment>{
       },
     }
   },
-  transformMode: 'ssr',
 }
