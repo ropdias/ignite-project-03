@@ -19,6 +19,3 @@
 
 # db
 /db/*.db
-
-# vscode settings
-/.vscode
